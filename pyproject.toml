@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spec-sentinel"
+version = "0.1.0"
+description = "A spec-quality linter for AI coding agents: ambiguity, testability, acceptance-criteria and traceability checks with a 0-100 readiness score."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "gaaiyun" }]
+keywords = ["spec", "linter", "prd", "requirements", "sarif", "ci", "ai-agents"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Quality Assurance",
+]
+dependencies = [
+    "typer>=0.9",
+    "pydantic>=2.0",
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4"]
+
+[project.scripts]
+spec-sentinel = "spec_sentinel.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/gaaiyun/spec-sentinel"
+Repository = "https://github.com/gaaiyun/spec-sentinel"
+
+[tool.setuptools]
+packages = ["spec_sentinel", "spec_sentinel.rules"]
+
+[tool.setuptools.package-data]
+spec_sentinel = ["samples/*.md", "samples/*.yaml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

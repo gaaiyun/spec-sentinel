@@ -1,0 +1,18 @@
+feature: User password reset
+requirements:
+  - id: REQ-101
+    description: >-
+      The system must send a reset link to the user's verified email within
+      60 seconds of a reset request.
+    acceptance: >-
+      When a reset is requested for a verified email, then an email
+      containing a single-use link is delivered within 60 seconds.
+  - id: REQ-102
+    description: The reset link must expire 15 minutes after issuance.
+    acceptance: >-
+      Verified by a test that requests a reset, waits past 15 minutes, and
+      asserts the link returns HTTP 410.
+  - description: The reset flow should be fast and handle errors gracefully.
+nonfunctional:
+  - id: NFR-101
+    description: The reset endpoint must respond within 200 ms at p95.
